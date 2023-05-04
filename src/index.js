@@ -1,19 +1,21 @@
 import PandaBridge from 'pandasuite-bridge';
 import './index.css';
 
-let properties = null;
-let markers = null;
-
 function myInit() {
-  // const imageUrl = PandaBridge.resolvePath('my_image.png');
-  // PandaBridge.send('imageChanged');
+  const url = new URL(window.parent.location.href);
+  const wid = url.searchParams.get('wid');
+  
+  if (wid) {
+    const queryable = {
+      wid,
+    };
+
+    PandaBridge.send(PandaBridge.UPDATED, { queryable });
+  }
 }
 
 PandaBridge.init(() => {
-  PandaBridge.onLoad((pandaData) => {
-    properties = pandaData.properties;
-    markers = pandaData.markers;
-
+  PandaBridge.onLoad(() => {
     if (document.readyState === 'complete') {
       myInit();
     } else {
@@ -21,24 +23,4 @@ PandaBridge.init(() => {
     }
   });
 
-  PandaBridge.onUpdate((pandaData) => {
-    properties = pandaData.properties;
-    markers = pandaData.markers;
-  });
-
-  /* Markers */
-
-  PandaBridge.getSnapshotData(() => null);
-
-  PandaBridge.setSnapshotData((pandaData) => {
-    // pandaData.data.id
-  });
-
-  /* Actions */
-
-  PandaBridge.listen('changeColor', (args) => {
-  });
-
-  PandaBridge.synchronize('synchroImages', (percent) => {
-  });
 });

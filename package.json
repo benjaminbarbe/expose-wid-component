@@ -1,6 +1,6 @@
 {
   "name": "expose-wid-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
   "repository": "https://github.com/benjaminbarbe/expose-wid-component.git",
   "private": true,

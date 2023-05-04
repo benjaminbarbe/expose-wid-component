@@ -4,7 +4,7 @@ import './index.css';
 function myInit() {
   const url = new URL(window.parent.location.href);
   const wid = url.searchParams.get('wid');
-  
+
   if (wid) {
     const queryable = {
       wid,
@@ -22,5 +22,4 @@ PandaBridge.init(() => {
       document.addEventListener('DOMContentLoaded', myInit, false);
     }
   });
-
 });
